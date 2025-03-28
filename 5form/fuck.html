@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <title>您的帳戶已被入侵</title>
+    </head>
+    <body style="background-color: black; color: white; text-align: center;">
+        <h1 style="color: red; font-size: 50px;">您的帳戶已被入侵</h1>
+        <img src="https://m.gxgif.com/pic/kb/202352514622.jpg" alt="恐怖圖片" style="display: block; margin: 0 auto; width: 60%;"/>
+        <audio id="scary-audio" autoplay muted>
+            <source src="static/yy.wav" type="audio/wav">
+        </audio>
+        <p style="font-size: 20px; color: yellow;">點擊按鈕解除鎖定</p>
+        <button onclick="unmuteAudio()" style="font-size: 20px; padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">解除鎖定</button>
+
+        <script>
+            window.onload = function() {
+                var audio = document.getElementById('scary-audio');
+                audio.muted = false;
+                audio.play();
+            };
+
+            function unmuteAudio() {
+                var audio = document.getElementById('scary-audio');
+                audio.muted = false;
+                audio.play();
+            }
+        </script>
+    </body>
+</html>
